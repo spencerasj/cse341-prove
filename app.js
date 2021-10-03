@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const errorController = require("./controllers/error");
+const PORT = process.env.PORT || 5000;
 //const expressHbs = require('express-handlebars');
 
 const app = express();
@@ -29,4 +30,4 @@ app.use(shopRoutes);
 
 app.use(errorController.get404);
 
-app.listen(5000);
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
