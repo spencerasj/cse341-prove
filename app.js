@@ -1,6 +1,7 @@
 const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const errorController = require("./controllers/error");
 const User = require("./models/user");
 const PORT = process.env.PORT || 5000;
@@ -36,9 +37,7 @@ app.use(shopRoutes);
 app.use(errorController.get404);
 
 mongoose
-  .connect(
-    "mongodb+srv://Jen:fifl6xklo2dFi0w8@cluster0.b2hr6.mongodb.net/shop?retryWrites=true&w=majority"
-  )
+  .connect(MONGODB_URL, options)
   .then((result) => {
     User.findOne().then((user) => {
       if (!user) {
@@ -57,3 +56,23 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+// const cors = require('cors') // Place this with other requires (like 'path' and 'express')
+// ...
+const corsOptions = {
+  origin: "https://cse341-prove-heroku.herokuapp.com/",
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
+
+const options = {
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+  family: 4,
+};
+
+const MONGODB_URL =
+  process.env.MONGODB_URL ||
+  "mongodb+srv://Jen:fifl6xklo2dFi0w8@cluster0.b2hr6.mongodb.net/shop?retryWrites=true&w=majority";
