@@ -35,6 +35,7 @@ app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 
 app.use(errorController.get404);
+
 const corsOptions = {
   origin: "https://cse341-prove-heroku.herokuapp.com/",
   optionsSuccessStatus: 200,
@@ -44,8 +45,8 @@ app.use(cors(corsOptions));
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
+  // useCreateIndex: true,
+  // useFindAndModify: false,
   family: 4,
 };
 
@@ -73,6 +74,3 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-// const cors = require('cors') // Place this with other requires (like 'path' and 'express')
-// ...
