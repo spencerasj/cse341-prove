@@ -1,24 +1,27 @@
-form {
-  display: inline;
-}
-
 .product-form {
   width: 20rem;
   max-width: 90%;
   margin: auto;
+  display: block;
 }
 
-button {
-  font: inherit;
-  border: 1px solid #3e00a1;
-  color: #3e00a1;
-  background: white;
-  border-radius: 3px;
-  cursor: pointer;
+.product-item {
+  width: 20rem;
+  max-width: 95%;
+  margin: 1rem;
 }
 
-button:hover,
-button:active {
-  background-color: #3e00a1;
-  color: white;
+.product__title {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.product__price {
+  text-align: center;
+  color: #4d4d4d;
+  margin-bottom: 0.5rem;
+}
+
+.product__description {
+  text-align: center;
 }
