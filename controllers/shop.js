@@ -48,7 +48,9 @@ exports.getCart = (req, res, next) => {
     .populate("cart.items.productId")
     // .execPopulate()
     .then((user) => {
+      console.log(user);
       const products = user.cart.items;
+      console.log(user);
       res.render("shop/cart", {
         path: "/cart",
         pageTitle: "Your Cart",
@@ -62,12 +64,16 @@ exports.postCart = (req, res, next) => {
   const prodId = req.body.productId;
   Product.findById(prodId)
     .then((product) => {
+      console.log(product);
+      console.log("first then of postcart");
       return req.user.addToCart(product);
     })
     .then((result) => {
       console.log(result);
+      console.log("this is in the postCart");
       res.redirect("/cart");
-    });
+    })
+    .catch((err) => console.log(err));
 };
 
 exports.postCartDeleteProduct = (req, res, next) => {
@@ -89,7 +95,7 @@ exports.postOrder = (req, res, next) => {
       });
       const order = new Order({
         user: {
-          name: req.user.name,
+          email: req.user.email,
           userId: req.user,
         },
         products: products,
@@ -117,9 +123,9 @@ exports.getOrders = (req, res, next) => {
     .catch((err) => console.log(err));
 };
 
-exports.getCheckout = (req, res, next) => {
-  res.render("shop/checkout", {
-    path: "/checkout",
-    pageTitle: "Checkout",
-  });
-};
+// exports.getCheckout = (req, res, next) => {
+//   res.render("shop/checkout", {
+//     path: "/checkout",
+//     pageTitle: "Checkout",
+//   });
+// };

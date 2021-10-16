@@ -1,5 +1,5 @@
 {
-  "name": "cse341-node",
+  "name": "cse341-prove",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,24 +9,33 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/spencerasj/cse341-node.git"
+    "url": "git+https://github.com/spencerasj/cse341-prove.git"
   },
   "author": "Jennifer Spencer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spencerasj/cse341-node/issues"
+    "url": "https://github.com/spencerasj/cse341-prove/issues"
   },
-  "homepage": "https://github.com/spencerasj/cse341-node#readme",
+  "homepage": "https://github.com/spencerasj/cse341-prove#readme",
   "devDependencies": {
     "nodemon": "^2.0.12"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongodb-session": "^3.1.1",
     "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-handlebars": "^3.0.2",
+    "express-session": "^1.17.2",
     "mongodb": "^4.1.2",
     "mongoose": "^6.0.9",
-    "pug": "^3.0.2"
+    "nodemailer": "^6.7.0",
+    "nodemailer-sendgrid-transport": "^0.2.0",
+    "pug": "^3.0.2",
+    "save": "^2.4.0"
   }
 }
