@@ -65,12 +65,12 @@ exports.postCart = (req, res, next) => {
   Product.findById(prodId)
     .then((product) => {
       console.log(product);
-      console.log("first then of postcart");
+
       return req.user.addToCart(product);
     })
     .then((result) => {
       console.log(result);
-      console.log("this is in the postCart");
+
       res.redirect("/cart");
     })
     .catch((err) => console.log(err));

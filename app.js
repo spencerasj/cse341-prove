@@ -76,35 +76,16 @@ const corsOptions = {
   origin: "https://cse341-prove-heroku.herokuapp.com/",
   optionsSuccessStatus: 200,
 };
+
 app.use(cors(corsOptions));
 
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  // useCreateIndex: true,
-  // useFindAndModify: false,
   family: 4,
 };
 
-// const MONGODB_URL =
-//   process.env.MONGODB_URL ||
-//   "mongodb+srv://Jen:fifl6xklo2dFi0w8@cluster0.b2hr6.mongodb.net/shop?retryWrites=true&w=majority";
-
 mongoose
-  // .connect(MONGODB_URL, options)
-  // .then((result) => {
-  //   User.findOne().then((user) => {
-  //     if (!user) {
-  //       const user = new User({
-  //         name: "Jen",
-  //         email: "jen@test.com",
-  //         cart: {
-  //           items: [],
-  //         },
-  //       });
-  //       user.save();
-  //     }
-  //   });
   .connect(MONGODB_URI)
   .then((result) => {
     app.listen(PORT, () => console.log(`Listening on ${PORT}`));
