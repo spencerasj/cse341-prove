@@ -45,6 +45,11 @@ app.use(
 
 app.use(csrfProtection);
 app.use(flash());
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
 
 app.use((req, res, next) => {
   if (!req.session.user) {
@@ -52,25 +57,37 @@ app.use((req, res, next) => {
   }
   User.findById(req.session.user._id)
     .then((user) => {
+      if (!user) {
+        return next();
+      }
       req.user = user;
       next();
     })
     .catch((err) => {
-      console.log(err);
+      next(new Error(err));
     });
 });
 
-app.use((req, res, next) => {
-  res.locals.isAuthenticated = req.session.isLoggedIn;
-  res.locals.csrfToken = req.csrfToken();
-  next();
-});
+// app.use((req, res, next) => {
+//   res.locals.isAuthenticated = req.session.isLoggedIn;
+//   res.locals.csrfToken = req.csrfToken();
+//   next();
+// });
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
 
+app.get("/500", errorController.get500);
 app.use(errorController.get404);
+
+app.use((error, req, res, next) => {
+  res.status(500).render("500", {
+    pageTitle: "Error has Occured",
+    path: "/500",
+    isAuthenticated: req.session.isLoggedIn,
+  });
+});
 
 const corsOptions = {
   origin: "https://cse341-prove-heroku.herokuapp.com/",
@@ -81,30 +98,10 @@ app.use(cors(corsOptions));
 const options = {
   useUnifiedTopology: true,
   useNewUrlParser: true,
-  // useCreateIndex: true,
-  // useFindAndModify: false,
   family: 4,
 };
 
-// const MONGODB_URL =
-//   process.env.MONGODB_URL ||
-//   "mongodb+srv://Jen:fifl6xklo2dFi0w8@cluster0.b2hr6.mongodb.net/shop?retryWrites=true&w=majority";
-
 mongoose
-  // .connect(MONGODB_URL, options)
-  // .then((result) => {
-  //   User.findOne().then((user) => {
-  //     if (!user) {
-  //       const user = new User({
-  //         name: "Jen",
-  //         email: "jen@test.com",
-  //         cart: {
-  //           items: [],
-  //         },
-  //       });
-  //       user.save();
-  //     }
-  //   });
   .connect(MONGODB_URI)
   .then((result) => {
     app.listen(PORT, () => console.log(`Listening on ${PORT}`));
