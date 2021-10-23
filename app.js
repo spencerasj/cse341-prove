@@ -93,6 +93,7 @@ const corsOptions = {
   origin: "https://cse341-prove-heroku.herokuapp.com/",
   optionsSuccessStatus: 200,
 };
+
 app.use(cors(corsOptions));
 
 const options = {
