@@ -9,11 +9,11 @@
   height: auto;
 }
 .orders__item {
-  width: 33%;
-  margin: 3rem;
-  padding: 2rem;
-  border: 2px double black;
+  width: 25%;
+  margin: 2rem;
+  padding: 3rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
 }
 .orders__item h1 {
-  font-size: 1.25em;
+  font-size: 1em;
 }

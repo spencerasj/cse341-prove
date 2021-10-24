@@ -1,12 +1,14 @@
 .cart__item-list {
   list-style: none;
+  display: flex;
   margin: 0;
-  padding: 0;
-  margin: auto;
+  padding: 2rem 0;
   width: 40rem;
   max-width: 90%;
 }
-
+.cart__item > * {
+  padding: 5px 0;
+}
 .cart__item {
   display: flex;
   align-items: center;
@@ -14,7 +16,8 @@
   justify-content: space-between;
   padding: 1rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  margin-bottom: 1rem;
+  margin: 1rem;
+  width: 50%;
 }
 
 .cart__item h1,
