@@ -1,0 +1,19 @@
+.orders {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+.orders__products-item img {
+  width: 15%;
+  height: auto;
+}
+.orders__item {
+  width: 33%;
+  margin: 3rem;
+  padding: 2rem;
+  border: 2px double black;
+}
+.orders__item h1 {
+  font-size: 1.25em;
+}
