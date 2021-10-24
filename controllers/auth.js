@@ -195,7 +195,7 @@ exports.postReset = (req, res, next) => {
           return res.redirect("/reset");
         }
         user.resetToken = token;
-        user.resetTokenExpired = Date.now() + 3600000;
+        user.resetTokenExpiration = Date.now() + 3600000;
         return user.save();
       })
       .then((result) => {
@@ -207,7 +207,7 @@ exports.postReset = (req, res, next) => {
           html:
             "<p>You requested a password reset</p>" +
             "\n" +
-            "<p>Click this <a href='http://localhost:3000/reset/${token}'>link</a> to set a new password.</p>",
+            "<p>Click this <a href='http://localhost:5000/reset/${token}'>link</a> to set a new password.</p>",
         });
       })
       .catch((err) => {
